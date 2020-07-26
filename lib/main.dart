@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hapi_app/model/diary.dart';
 
 void main() => runApp(HapiApp());
 
@@ -12,11 +13,21 @@ class HapiApp extends StatefulWidget {
 
 //data in this class is persistence. _ makes it private
 class _HapiAppState extends State<HapiApp> {
+  final diaryEntries = [
+    Diary('Dancing in the moon', DateTime(2020, 9, 6, 12), 4, 6,
+        'salsa dancing technicques', 'dancing under the moon shine'),
+    Diary('Meet the president', DateTime(2020, 9, 6, 12), 4, 6,
+        'salsa dancing technicques', 'dancing under the moon shine'),
+    Diary('Driving nice car', DateTime(2020, 9, 6, 12), 4, 6,
+        'salsa dancing technicques', 'dancing under the moon shine'),
+    Diary('Traveling around', DateTime(2020, 9, 6, 12), 4, 6,
+        'salsa dancing technicques', 'dancing under the moon shine'),
+  ];
+
   static final String _happyAsset = 'assets/happy.svg';
   final Widget svgIcon = SvgPicture.asset(
     _happyAsset,
   );
-
   @override
   Widget build(Object context) {
     return MaterialApp(
@@ -24,31 +35,22 @@ class _HapiAppState extends State<HapiApp> {
         appBar: AppBar(
           title: Text('Hapi App'),
         ),
-        body: ListView(
-          children: <Widget>[
-            Card(
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return Card(
               child: ListTile(
-                title: Text('Dancing in the rain'),
-                subtitle: Text('2020-04-12'),
+                onTap: null,
+                title: Text(diaryEntries[index].highlight),
+                subtitle: Text(diaryEntries[index].date.toString()),
                 leading: Container(
                   constraints: BoxConstraints(maxWidth: 40.0),
                   alignment: Alignment.centerLeft,
                   child: svgIcon,
                 ),
               ),
-            ),
-            Card(
-              child: ListTile(
-                title: Text('Meeting Chuck Norris'),
-                subtitle: Text('2020-04-11'),
-                leading: Container(
-                  constraints: BoxConstraints(maxWidth: 40.0),
-                  alignment: Alignment.centerLeft,
-                  child: svgIcon,
-                ),
-              ),
-            )
-          ],
+            );
+          },
+          itemCount: diaryEntries.length,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: null,
