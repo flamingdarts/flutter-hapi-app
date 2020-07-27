@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hapi_app/diary_form.dart';
 import 'package:hapi_app/model/diary.dart';
 
 void main() => runApp(HapiApp());
@@ -52,9 +53,14 @@ class _HapiAppState extends State<HapiApp> {
           },
           itemCount: diaryEntries.length,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          child: Icon(Icons.add),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DiaryForm()),
+            ),
+            child: Icon(Icons.add),
+          ),
         ),
       ),
     );
