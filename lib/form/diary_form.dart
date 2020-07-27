@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hapi_app/form/diary_input_fields.dart';
+import 'package:hapi_app/model/diary.dart';
 
 class DiaryForm extends StatelessWidget {
   @override
@@ -25,6 +26,11 @@ class DiaryForm extends StatelessWidget {
                   ),
                   color: Colors.blue,
                   onPressed: () {
+                    Navigator.pop(
+                      context,
+                      Diary('TEst', DateTime(2020, 9, 6, 13), 2, 3, 'used',
+                          'moments'),
+                    );
                     print("Pressed saved!");
                   }),
             )

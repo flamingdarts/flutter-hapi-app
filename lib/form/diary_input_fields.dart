@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'level_slider.dart';
 
 class DiaryInputFields extends StatelessWidget {
+  String _technique = "";
+  String _moments = "";
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -20,11 +23,17 @@ class DiaryInputFields extends StatelessWidget {
             decoration: InputDecoration(
               labelText: 'Which techniques did you try?',
             ),
+            onSaved: (value) {
+              _technique = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
               labelText: 'Which moment of the day did you appreciate?',
             ),
+            onSaved: (value) {
+              _moments = value;
+            },
           ),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hapi_app/diary_form.dart';
+import 'package:hapi_app/form/diary_form.dart';
 import 'package:hapi_app/model/diary.dart';
 
 void main() => runApp(HapiApp());
@@ -29,6 +29,17 @@ class _HapiAppState extends State<HapiApp> {
   final Widget svgIcon = SvgPicture.asset(
     _happyAsset,
   );
+
+  _navigateToForm(BuildContext context) async {
+    final Diary result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DiaryForm()),
+    );
+    setState(() {
+      diaryEntries.add(result);
+    });
+  }
+
   @override
   Widget build(Object context) {
     return MaterialApp(
@@ -55,10 +66,7 @@ class _HapiAppState extends State<HapiApp> {
         ),
         floatingActionButton: Builder(
           builder: (context) => FloatingActionButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DiaryForm()),
-            ),
+            onPressed: () => _navigateToForm(context),
             child: Icon(Icons.add),
           ),
         ),

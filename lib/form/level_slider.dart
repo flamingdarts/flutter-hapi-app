@@ -9,6 +9,9 @@ class LevelSlider extends StatefulWidget {
 
 class _LevelSliderState extends State<LevelSlider> {
   double _value = 0;
+
+  double get value => _value;
+
   final String _title;
   _LevelSliderState(this._title);
   @override
